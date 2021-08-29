@@ -23,11 +23,114 @@ const promptManager = () => {
                 }
             }
 
+        },
+
+        {
+            type: 'input',
+            name: 'employeeId',
+            message: 'Enter your employee ID? (Required)',
+            validate: (employeeId) => {
+                if (employeeId) {
+                    return true;
+                } else {
+                    console.log('Please enter your employee ID!');
+                    return false;
+                }
+            }
+
+        },
+
+        {
+            type: 'input',
+            name: 'email',
+            message: 'Enter your email address (Required)',
+            validate: (email) => {
+                if (email) {
+                    return true;
+                } else {
+                    console.log('Please enter your email address!');
+                    return false;
+                }
+            }
+
+        },
+        {
+            type: 'input',
+            name: 'officeNumber',
+            message: 'Enter your office number (Required)',
+            validate: (officeNumber) => {
+                if (officeNumber) {
+                    return true;
+                } else {
+                    console.log('Please enter your office number!');
+                    return false;
+                }
+            }
+
+        },
+
+    ]).then(answers => {
+        console.log(answers);
+        const manager = new Manager(answer.name, answer.employeeId, answers.email, answers.officeNumer);
+        teamMembers.push(manager);
+        promptMenu();
+    })
+};
+
+const promptMenu = () => {
+    return inquirer.prompt([
+        {
+            type: 'list',
+            name: 'menu',
+            message: 'Please select which option you would like to continue with:',
+            choice: ['add an intern', 'finish building my team'],
+        }])
+        .then(userChoice => {
+            switch (userChoice.menu) {
+                case "add an intern":
+                    promptIntern();
+                    break;
+                default:
+                    buildTeam();
+            }
+        });
+};
+
+const promptIntern = () => {
+    console.log('add new intern');
+    return inquirer.prompt([
+        {
+        type: 'input',
+        name: 'name',
+        message: `What is the name of the intern? (Required)`,
+        validate: interName => {
+            if(interName) {
+                return true;
+            } else {
+                console.log('Please enter the name of the intern!');
+                return false;
+
+            }
+
+        } 
         }
-    ])
-}
+    ]).then(answers => {
+        console.log(answers);
+        const intern = new Intern(answers.name, answer.employeeId, answers.email, answers.officeNumer);
+        teamMembers.push(intern);
+        promptMenu();
+    }) 
+    };
 
+    const buildTeam = () => {
+        console.log('Finish building my team');
+        if (fs.existsSync(OUTPUT_DIR)) {
+            fs.mkdirSync(OUTPUT_DIR)
+        }
+        fs.writeFileSync(outputPath, generateSite(teamMembers), "utf-8");
+    }
 
+    promptManager();
 /*
 
 const questions = [
