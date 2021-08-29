@@ -1,5 +1,5 @@
-const { expect, test } = require("@jest/globals");
-const Employee = require("./employees");
+const { expect, it } = require("@jest/globals");
+const Employee = require("../lib/employees");
 const employee = new Employee('ralph', '8054264', 'mrralphpierre@gmail.com');
 
 it('test if we can get the constrcutor values for the employee object', () => {
