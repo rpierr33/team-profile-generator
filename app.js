@@ -74,7 +74,7 @@ const promptManager = () => {
 
     ]).then(answers => {
         console.log(answers);
-        const manager = new Manager(answer.name, answer.employeeId, answers.email, answers.officeNumer);
+        const manager = new Manager(answers.name, answers.employeeId, answers.email, answers.officeNumer);
         teamMembers.push(manager);
         promptMenu();
     })
@@ -86,7 +86,7 @@ const promptMenu = () => {
             type: 'list',
             name: 'menu',
             message: 'Please select which option you would like to continue with:',
-            choice: ['add an engineer', 'add an intern', 'finish building my team'],
+            choices: ['add an engineer', 'add an intern', 'finish building my team'],
         }])
         .then(userChoice => {
             switch (userChoice.menu) {
@@ -165,7 +165,7 @@ const promptEngineer = () => {
         },
     ]).then(answers => {
         console.log(answers);
-        const engineer = new Engineer(answers.name, answer.engineerId, answers.email, answers.school);
+        const engineer = new Engineer(answers.name, answers.engineerId, answers.email, answers.school);
         teamMembers.push(engineer);
         promptMenu();
     }) 
@@ -235,7 +235,7 @@ const promptEngineer = () => {
             },
         ]).then(answers => {
             console.log(answers);
-            const intern = new Intern(answers.name, answer.internId, answers.email, answers.school);
+            const intern = new Intern(answers.name, answers.internId, answers.email, answers.school);
             teamMembers.push(intern);
             promptMenu();
         }) 
@@ -243,7 +243,7 @@ const promptEngineer = () => {
 
     const buildTeam = () => {
         console.log('Finish building my team');
-        if (fs.existsSync(OUTPUT_DIR)) {
+        if (!fs.existsSync(OUTPUT_DIR)) {
             fs.mkdirSync(OUTPUT_DIR)
         }
         fs.writeFileSync(outputPath, generateSite(teamMembers), "utf-8");

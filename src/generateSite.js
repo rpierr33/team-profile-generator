@@ -15,6 +15,7 @@ const generateTeam = (team) => {
                 <li class="list-group-item">ID: ${manager.id}</li>
                 <li class="list-group-item">Email <span id="email"><a href="mailto:${manager.email}">${manager.email}</a></span></li>
                 <li class="list-group-item">Office Number: ${manager.officeNumber}</li>
+            </ul>    
         </div>
 
             `;
@@ -31,7 +32,9 @@ const generateTeam = (team) => {
             <ul class="list-group list-group-fush">
                 <li class="list-group-item">ID: ${engineer.id}</li>
                 <li class="list-group-item">Email <span id="email"><a href="mailto:${engineer.email}">${engineer.email}</a></span></li>
-                <li class="list-group-item">User Name: ${engineer.githubUsername}</li>
+                <li class="list-group-item">User Name: ${engineer.githubName}</li>
+            </ul>    
+    
         </div>
 
             `;
@@ -50,27 +53,30 @@ const generateTeam = (team) => {
                 <li class="list-group-item">ID: ${intern.id}</li>
                 <li class="list-group-item">Email <span id="email"><a href="mailto:${intern.email}">${intern.email}</a></span></li>
                 <li class="list-group-item">School: ${intern.school}</li>
-        </div>
+            </ul>    
+
+                </div>
 
             `;
             html.push(internHtml);
     }
 
     for (let i = 0; i < team.length; i++) {
-        if (team(i).getRole() === "Manager") {
-            generateManager(team(i));
+        if (team[i].getRole() === "Manager") {
+            generateManager(team[i]);
         }
-        if (team(i).getRole() === "Engineer") {
-            generateEngineer(team(i));
+        if (team[i].getRole() === "Engineer") {
+            generateEngineer(team[i]);
         }
-        if (team(i).getRole() === "Intern") {
-            generateIntern(team(i));
+        if (team[i].getRole() === "Intern") {
+            generateIntern(team[i]);
         }
     }
 
-
+    return html.join('');
 }
 
+   
 module.exports = team => {
 
     return `
