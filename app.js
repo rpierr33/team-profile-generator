@@ -1,6 +1,9 @@
 const inquirer = require('inquirer');
 const fs = require("fs");
 const Manager = require('./lib/manager');
+const Intern = require('./lib/intern');
+const Engineer = require('./lib/engineer');
+
 const path = require("path");
 const generateSite = require('./src/generateSite.js');
 
@@ -83,44 +86,160 @@ const promptMenu = () => {
             type: 'list',
             name: 'menu',
             message: 'Please select which option you would like to continue with:',
-            choice: ['add an intern', 'finish building my team'],
+            choice: ['add an engineer', 'add an intern', 'finish building my team'],
         }])
         .then(userChoice => {
             switch (userChoice.menu) {
+                case "add an engineer":
+                    promptEngineer();
+                    break;
                 case "add an intern":
                     promptIntern();
-                    break;
+                    break;    
                 default:
                     buildTeam();
             }
         });
 };
 
-const promptIntern = () => {
-    console.log('add new intern');
+const promptEngineer = () => {
+    console.log('add new Engineer');
     return inquirer.prompt([
         {
         type: 'input',
         name: 'name',
-        message: `What is the name of the intern? (Required)`,
-        validate: interName => {
-            if(interName) {
+        message: `What is the name of the engineer? (Required)`,
+        validate: engineerName => {
+            if(engineerName) {
                 return true;
             } else {
-                console.log('Please enter the name of the intern!');
+                console.log('Please enter the name of the engineer!');
                 return false;
 
             }
 
         } 
-        }
+        },
+        {
+            type: 'input',
+            name: 'engineerId',
+            message: 'Enter your engineer ID? (Required)',
+            validate: (engineerId) => {
+                if (engineerId) {
+                    return true;
+                } else {
+                    console.log('Please enter your engineer ID!');
+                    return false;
+                }
+            }
+
+        },
+
+        {
+            type: 'input',
+            name: 'email',
+            message: 'Enter your email address (Required)',
+            validate: (email) => {
+                if (email) {
+                    return true;
+                } else {
+                    console.log('Please enter your email address!');
+                    return false;
+                }
+            }
+
+        },
+        {
+            type: 'input',
+            name: 'githubName',
+            message: 'Enter your Github name (Required)',
+            validate: (githubName) => {
+                if (githubName) {
+                    return true;
+                } else {
+                    console.log('Please enter your Github name');
+                    return false;
+                }
+            }
+
+        },
     ]).then(answers => {
         console.log(answers);
-        const intern = new Intern(answers.name, answer.employeeId, answers.email, answers.officeNumer);
-        teamMembers.push(intern);
+        const engineer = new Engineer(answers.name, answer.engineerId, answers.email, answers.school);
+        teamMembers.push(engineer);
         promptMenu();
     }) 
     };
+
+
+    const promptIntern = () => {
+        console.log('add new intern');
+        return inquirer.prompt([
+            {
+            type: 'input',
+            name: 'name',
+            message: `What is the name of the intern? (Required)`,
+            validate: internName => {
+                if(internName) {
+                    return true;
+                } else {
+                    console.log('Please enter the name of the intern!');
+                    return false;
+    
+                }
+    
+            } 
+            },
+            {
+                type: 'input',
+                name: 'internId',
+                message: 'Enter your intern ID? (Required)',
+                validate: (internId) => {
+                    if (internId) {
+                        return true;
+                    } else {
+                        console.log('Please enter your intern ID!');
+                        return false;
+                    }
+                }
+    
+            },
+    
+            {
+                type: 'input',
+                name: 'email',
+                message: 'Enter your email address (Required)',
+                validate: (email) => {
+                    if (email) {
+                        return true;
+                    } else {
+                        console.log('Please enter your email address!');
+                        return false;
+                    }
+                }
+    
+            },
+            {
+                type: 'input',
+                name: 'schoolName',
+                message: 'Enter your school name (Required)',
+                validate: (schoolName) => {
+                    if (schoolName) {
+                        return true;
+                    } else {
+                        console.log('Please enter your school name');
+                        return false;
+                    }
+                }
+    
+            },
+        ]).then(answers => {
+            console.log(answers);
+            const intern = new Intern(answers.name, answer.internId, answers.email, answers.school);
+            teamMembers.push(intern);
+            promptMenu();
+        }) 
+        };
 
     const buildTeam = () => {
         console.log('Finish building my team');
@@ -131,94 +250,3 @@ const promptIntern = () => {
     }
 
     promptManager();
-/*
-
-const questions = [
-    {
-        type: 'input',
-        name: 'title',
-        message: `What is the title of your project?`,
-    },
-    {
-        type: 'input',
-        name: 'codename',
-        message: `What is your name?`,
-    },
-    {
-        type: 'input',
-        name: 'github',
-        message: `What's your GitHub User Name?`,
-
-    },
-    {
-        type: 'input',
-        name: 'email',
-        message: `What's your email address?`,
-        validate: function (value) {
-            let pass = value.match(
-                /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
-            );
-            if (pass) {
-                return true;
-            }
-            return 'Please enter a valid email address!';
-        },
-    },
-    {
-        type: 'input',
-        name: 'description',
-        message: `Please write a description of your project`,
-
-    },
-    {
-        type: 'confirm',
-        name: 'install',
-        message: `Do you want to add any installation notes?`,
-
-    },
-    {
-        type: 'input',
-        name: 'installNotes',
-        message: `Please add your installation notes`,
-        when: function (answers) {
-            return answers.install;
-        }
-    },
-    {
-        type: 'confirm',
-        name: 'usage',
-        message: `Do you want to provide the user usage information?`,
-    },
-    {
-        type: 'input',
-        name: 'usageInfo',
-        message: `Please add your usage info`,
-        when: function (answers) {
-            return answers.usage;
-        }
-    },
-   
-    {
-        type: 'rawlist',
-        name: 'license',
-        message: 'Which open source license would you like to use? ',
-        choices: ['Apache 2.0', 'MIT', 'Mozilla Public 2.0'],
-    },
-    {
-        type: 'confirm',
-        name: 'credits',
-        message: `Would you like to add any credits to the repo?`,
-    },
-    {
-        type: 'input',
-        name: 'creditData',
-        message: `Please add your credits`,
-        when: function (answers) {
-            return answers.credits;
-        }
-    },
-
-];
-
-
-*/
