@@ -8,7 +8,7 @@
 
 # [Deployed Application](https://rpierr33.github.io/team-profile-generator/) 
 
-# ReadMeGenerator©
+# teamprofileGenerator©
 
 # 2021 All Rights Reserved. 
 
