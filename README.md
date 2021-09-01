@@ -6,8 +6,6 @@
 
 # mrralphpierre@gmail.com [Email Me]  
 
-# [Deployed Application](https://rpierr33.github.io/team-profile-generator/) 
-
 # teamprofileGenerator©
 
 # 2021 All Rights Reserved. 
@@ -23,6 +21,4 @@ When team members and their information are requested, an HTML document is gener
 To install this application, clone the code into your terminal for the respective repository. Then, install npm by entering the command npm init into the terminal. Inquirer must then be installed by entering npm install inquirer. Finally, the program can then be run by entering node app.js into the command line, and answering each question appropriately.
 
 # License
-
-
 This application is rendered under MIT
