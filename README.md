@@ -6,7 +6,8 @@
 
 # mrralphpierre@gmail.com [Email Me]  
 
-# [Deployed Application](https://rpierr33.github.io/team-profile-generator/) 
+# link
+https://rpierr33.github.io/team-profile-generator/
 
 # ReadMeGenerator©
 
