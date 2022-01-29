@@ -1,0 +1,28 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "[![npm](https://badge.fury.io/js/inquirer.svg)](http://badge.fury.io/js/inquirer)",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "inquirer": "^8.1.2",
+    "jest": "^27.4.7",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rpierr33/team-profile-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rpierr33/team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/rpierr33/team-profile-generator#readme"
+}

@@ -1,24 +1,27 @@
 # team-profile-generator
+[![npm](https://badge.fury.io/js/inquirer.svg)](http://badge.fury.io/js/inquirer)
 
-# Ralph P aka rebelcoder 
+
+## Description
+Team profile generator using inquirer, that takes input in the form of team member information from a user, Manager, Engineer, and generate an HTML file displaying all three team members.
+<br>
+Test were written using jest.
+<br>
+![Alt text](image-link "Team-Profile-Generator");
+
+## Table of Contents
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributors](#contributors)
+- [Tests](#tests)
+- [Technology Used](#technology-used)
+- [Questions](#questions)
+
+## Installation
+1. Clone down repository
+2. install npm (npm i)
+3. install inquirer (npm install inquirer)
 
 # rpierr33 
 
-# mrralphpierre@gmail.com [Email Me]  
-
-# teamprofileGenerator©
-
-# 2021 All Rights Reserved. 
-
-# Description 
-
-This project involves creating a Node.js command-line application that collects information on software engineering team members and provides an HTML webpage with summaries for each individual. Jest tests were written for each section of the code to guarantee that it passed them all.
-
-When team members and their information are requested, an HTML document is generated.
-
-# Installation
-
-To install this application, clone the code into your terminal for the respective repository. Then, install npm by entering the command npm init into the terminal. Inquirer must then be installed by entering npm install inquirer. Finally, the program can then be run by entering node app.js into the command line, and answering each question appropriately.
-
-# License
-This application is rendered under MIT
